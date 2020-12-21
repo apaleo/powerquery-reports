@@ -22,7 +22,7 @@ The registration process involves entering basic client app details and the scop
 
 If desired, you can edit a registered client app at any point in the future. The registration process is not considered as a part of the authorization flow. 
 
-To learn how to create your client, go to [Register the OAuth simple client application](https://apaleo.dev/guides/start/oauth-connection/register-app#register-the-oauth-simple-client-application). Review your app details and save your app. Once you save the app, you'll get the following screen.
+To learn how to create your client, go to [Register the OAuth simple client application](https://apaleo.dev/guides/start/oauth-connection/register-app#register-the-oauth-simple-client-application). Review your app details and save your app. Once you save the app, you'll get the following dialog-box.
 
 <img src="/images/credentials.png"/>
 
@@ -42,7 +42,7 @@ To learn how to create your client, go to [Register the OAuth simple client appl
 
 
 
-The first part of the query requests an access token from the API. Insert your Client ID and Secret.
+The first part of the query requests an access token from the API. Insert your Client ID and Secret as shown below.
 
 
 
@@ -81,7 +81,7 @@ let
 
 
 
-The second part of the query uses the access token we just generated to get data from the API.
+The second part of the query uses the access token that we've just generated to get the data from API.
 
 
 
@@ -106,7 +106,7 @@ EndDate = (x as number) => Date.ToText(Date.EndOfWeek(Date.AddDays(TodayDate,x*7
 
 
 
-The remainder of the query consists of various transformation steps. You can create your own transformations to suit your needs.
+The remainder of the query consists of various transformation steps to render your data. You can create your own transformations to suit your needs.
 
 
 
