@@ -26,7 +26,7 @@ To learn how to create your client, go to [Register the OAuth simple client appl
 
 <img src="/images/credentials.png"/>
 
-> Take note of the client ID and client secret. You’ll need these in the [next step](#Setting up the API Connection in Power Query) to initiate the OAuth flow.
+> Take note of the client ID and client secret. You’ll need these in the [next step](https://github.com/apaleo/powerquery-reports#setting-up-the-api-connection-in-power-query) to initiate the OAuth flow.
 
 
 
