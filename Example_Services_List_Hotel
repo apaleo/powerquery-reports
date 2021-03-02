@@ -1,0 +1,59 @@
+ //  Replace the values with your property values. 
+
+
+let
+ // Concatenates the Client ID & Client Secret and converts to base64
+
+ authKey = "Basic " & Binary.ToText(Text.ToBinary("XXXX-SP-REPORTING_APALEO" & ":" & "msl3q.........NLSE7d"),BinaryEncoding.Base64),
+
+ url = "https://identity.apaleo.com/connect/token",
+
+ // Uses the apaleo POST token method to obtain a bearer token
+
+ GetJson = Web.Contents(url,
+
+     [
+
+         Headers = [#"Authorization"=authKey,
+
+                    #"Content-Type"="application/x-www-form-urlencoded;charset=UTF-8"],
+
+         Content = Text.ToBinary("grant_type=client_credentials") 
+
+     ]
+
+ ),
+
+ FormatAsJson = Json.Document(GetJson),
+
+ // Gets token from the Json response
+
+ AccessToken =  FormatAsJson[access_token],
+
+ AccessTokenHeader = "bearer " & AccessToken,
+
+ // Uses the api. Replace the services and property ID with your poperty values.
+
+TodayDate = DateTime.Date(DateTime.LocalNow()),
+
+StartDate = (x as number) => Date.ToText(Date.StartOfWeek(Date.AddDays(TodayDate,x*7), Day.Monday),"yyyy-MM-dd"),
+EndDate = (x as number) => Date.ToText(Date.EndOfWeek(Date.AddDays(TodayDate,x*7), Day.Monday),"yyyy-MM-dd"),
+
+GetJsonQuery = (x as number) => Web.Contents("https://api.apaleo.com/reports/v1/reports/ordered-services?propertyId=MUC&serviceIds=MUC_SERVICEID1,MUC_SERVICEID2,MUC_SERVICEID3,MUC_SERVICEID4&from="&StartDate(x)&"&to="&EndDate(x),
+
+     [
+
+         Headers = [#"Authorization"=AccessTokenHeader]
+
+     ]
+
+ ),
+
+orderedServicesResponseTable = Record.ToTable(Json.Document(GetJsonQuery(1))),
+orderedServicesList = orderedServicesResponseTable{0}[Value],
+orderedServicesTable = Table.FromList(orderedServicesList, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+orderedServicesExpandedTable = Table.ExpandRecordColumn(orderedServicesTable, "Column1", {"id", "code", "name", "serviceDate", "count"}, {"ID", "Code", "Name", "ServiceDate", "Count"})
+
+
+in
+    orderedServicesExpandedTable
