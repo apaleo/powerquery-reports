@@ -42,9 +42,8 @@ To learn how to create your client, go to [Register the OAuth simple client appl
 
 
 
-The first part of the query requests an access token from the API. Insert your Client ID and Secret as shown below.
+The first part of the query requests an access token from the API. [Replace](https://github.com/apaleo/powerquery-reports/blob/master/query#L7) `APALEO_CLIENT_ID` and `APALEO_CLIENT_SECRET`
 
-- [replace](https://github.com/apaleo/powerquery-reports/blob/master/query#L7) `APALEO_CLIENT_ID` and `APALEO_CLIENT_SECRET`
 
 The second part of the query uses the access token that we've just generated to get the data from API.
 
