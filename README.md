@@ -44,42 +44,7 @@ To learn how to create your client, go to [Register the OAuth simple client appl
 
 The first part of the query requests an access token from the API. Insert your Client ID and Secret as shown below.
 
-
-
-```
-let
- // Concatenates the Client ID & Client Secret and converts to base64
-
- authKey = "Basic " & Binary.ToText(Text.ToBinary("XXXX-SP-REPORT" & ":" & "msl3q97yFxxxxxxxxNLSE7d"),BinaryEncoding.Base64),
-
- url = "https://identity.apaleo.com/connect/token",
-
- // Uses the apaleo POST token method to obtain a bearer token
-
- GetJson = Web.Contents(url,
-
-     [
-
-         Headers = [#"Authorization"=authKey,
-
-                    #"Content-Type"="application/x-www-form-urlencoded;charset=UTF-8"],
-
-         Content = Text.ToBinary("grant_type=client_credentials") 
-
-     ]
-
- ),
-
- FormatAsJson = Json.Document(GetJson),
-
- // Gets token from the Json response
-
- AccessToken =  FormatAsJson[access_token],
-
- AccessTokenHeader = "bearer " & AccessToken,
-```
-
-
+- replace `APALEO_CLIENT_ID` and `APALEO_CLIENT_SECRET` -> https://github.com/apaleo/powerquery-reports/blob/5a586bedbe61c3372eeee85f263b11655de14e43/query#L7
 
 The second part of the query uses the access token that we've just generated to get the data from API.
 

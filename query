@@ -4,7 +4,7 @@
 let
  // Concatenates the Client ID & Client Secret and converts to base64
 
- authKey = "Basic " & Binary.ToText(Text.ToBinary("XXXX-SP-REPORTING_APALEO" & ":" & "msl3q.........NLSE7d"),BinaryEncoding.Base64),
+ authKey = "Basic " & Binary.ToText(Text.ToBinary("APALEO_CLIENT_ID" & ":" & "APALEO_CLIENT_SECRET"),BinaryEncoding.Base64),
 
  url = "https://identity.apaleo.com/connect/token",
 
